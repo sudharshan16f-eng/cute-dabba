@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Dabba - Freshly Baked Brownies & Cakes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #faf8f6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f5e6d3 0%, #ffe8d6 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8b4513;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #8b4513;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4745f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ffe8d6 0%, #f5e6d3 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+        }
+
+        .hero .tagline {
+            font-size: 18px;
+            color: #d4745f;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #d4745f 0%, #c85a4a 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 116, 95, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 36px;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Georgia', serif;
+        }
+
+        .section-divider {
+            text-align: center;
+            color: #d4745f;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Products Section */
+        #products {
+            background-color: #faf8f6;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            font-size: 24px;
+            color: #8b4513;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .product-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 22px;
+            color: #d4745f;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-button {
+            background: linear-gradient(135deg, #d4745f 0%, #c85a4a 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .product-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Why Choose Us */
+        #why-us {
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            background: #faf8f6;
+            transition: background 0.3s;
+        }
+
+        .feature:hover {
+            background: #f5e6d3;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            color: #8b4513;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .feature-desc {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #ffe8d6 0%, #f5e6d3 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f5e6d3;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4745f;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #d4745f 0%, #c85a4a 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f5e6d3;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .info-content {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #d4745f 0%, #c85a4a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #8b4513;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">🍫 Cute Dabba</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="logo.png" alt="Cute Dabba Logo" class="hero-logo">
+            <h1>Cute Dabba</h1>
+            <p class="tagline">Freshly Baked Happiness in Every Bite</p>
+            <a href="#products" class="cta-button">Explore Our Brownies</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us ❤️</h2>
+        <div class="section-divider">♥ ♥ ♥</div>
+        <div class="about-content">
+            <p>At Cute Dabba, we believe every brownie should be rich, fudgy, and unforgettable. Made with premium ingredients and baked fresh daily, our brownies are crafted to bring joy to every occasion. Whether you're craving a classic chocolate brownie or exploring unique flavors, we have something delicious for everyone.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Our Delicious Brownies 🍫</h2>
+        <div class="section-divider">♥ ♥ ♥</div>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Crect width='300' height='250' fill='%23e8d4c0'/%3E%3Crect x='50' y='80' width='200' height='100' rx='10' fill='%234a2511'/%3E%3Cellipse cx='80' cy='70' rx='25' ry='35' fill='%23ff6b6b'/%3E%3Cellipse cx='220' cy='75' rx='22' ry='32' fill='%23ff6b6b'/%3E%3Ctext x='150' y='140' font-size='24' fill='%23fff' text-anchor='middle' font-weight='bold'%3EChocolate%3C/text%3E%3C/svg%3E" alt="Snobbery Brownie" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Snobbery Brownie</div>
+                    <div class="product-desc">Rich chocolate brownie with fresh strawberries and white chocolate</div>
+                    <div class="product-price">₹150 (100g)</div>
+                    <button class="product-button" onclick="orderProduct('Snobbery Brownie')">Order Now</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Crect width='300' height='250' fill='%23e8d4c0'/%3E%3Cellipse cx='150' cy='180' rx='120' ry='50' fill='%234a2511'/%3E%3Crect x='60' y='120' width='180' height='70' rx='5' fill='%233d1f0a'/%3E%3Cpolygon points='150,80 180,120 120,120' fill='%23c9a961'/%3E%3Ccircle cx='100' cy='130' r='12' fill='%23000'/%3E%3Ccircle cx='150' cy='125' r='12' fill='%23c9a961'/%3E%3Ccircle cx='200' cy='135' r='12' fill='%23000'/%3E%3Ctext x='150' y='210' font-size='18' fill='%238b4513' text-anchor='middle' font-weight='bold'%3ECake%3C/text%3E%3C/svg%3E" alt="Brownei Cake" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Brownei Cake</div>
+                    <div class="product-desc">Luxurious chocolate cake with caramel drip and gourmet toppings</div>
+                    <div class="product-price">₹500 per kg</div>
+                    <button class="product-button" onclick="orderProduct('Brownei Cake')">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us">
+        <h2>Why Choose Cute Dabba? ✨</h2>
+        <div class="section-divider">♥ ♥ ♥</div>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🍰</div>
+                <div class="feature-title">Freshly Baked Daily</div>
+                <div class="feature-desc">Every batch is prepared fresh to ensure the best taste and quality.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⭐</div>
+                <div class="feature-title">Premium Ingredients</div>
+                <div class="feature-desc">We use only high-quality chocolate, butter, and natural ingredients.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Unique Flavors</div>
+                <div class="feature-desc">From classic favorites to creative seasonal specials.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎁</div>
+                <div class="feature-title">Perfect for Gifting</div>
+                <div class="feature-desc">Beautifully packaged brownie boxes for every occasion.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">😊</div>
+                <div class="feature-title">Customer Satisfaction</div>
+                <div class="feature-desc">Hundreds of happy customers trust us for their brownie cravings.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📍</div>
+                <div class="feature-title">Local & Fresh</div>
+                <div class="feature-desc">Located in Thuraipakam, delivering happiness to your doorstep.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch 💌</h2>
+        <div class="section-divider">♥ ♥ ♥</div>
+        <div class="contact-content">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3 style="color: #8b4513; margin-bottom: 20px;">Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="occasion">Occasion (Wedding, Party, Bulk Order, etc.)</label>
+                        <input type="text" id="occasion" name="occasion">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3 style="color: #8b4513; margin-bottom: 20px;">Contact Information</h3>
+
+                <div class="info-item">
+                    <span class="info-label">📞 Phone</span>
+                    <div class="info-content">+91-2748372649</div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">📧 Email</span>
+                    <div class="info-content">varsha31@gmail.com</div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">📍 Location</span>
+                    <div class="info-content">Thuraipakam</div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">🔗 Connect With Us</span>
+                    <div class="social-links">
+                        <a href="https://api.whatsapp.com/send?phone=919876543210" target="_blank" class="social-btn">WhatsApp</a>
+                        <a href="https://www.instagram.com/varsha_cutedabba/" target="_blank" class="social-btn">Instagram</a>
+                    </div>
+                </div>
+
+                <div class="info-item" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #f5e6d3;">
+                    <span class="info-label">💝 Special Orders</span>
+                    <div class="info-content">Marriage • Party • Bulk Orders • Custom Packages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Cute Dabba. All rights reserved.</p>
+        <p>Made with ❤️ • Freshly Baked Happiness in Every Bite</p>
+    </footer>
+
+    <script>
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const occasion = document.getElementById('occasion').value;
+            const message = document.getElementById('message').value;
+
+            // Create email body
+            const emailBody = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AOccasion: ${occasion}%0AMessage: ${message}`;
+
+            // Send via email
+            window.location.href = `mailto:varsha31@gmail.com?subject=New Order from ${name}&body=${emailBody}`;
+
+            // Reset form
+            this.reset();
+        });
+
+        // Handle product order
+        function orderProduct(productName) {
+            const message = `Hi! I'm interested in ordering ${productName}. Can you provide more details and pricing?`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=919876543210&text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
